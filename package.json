@@ -1,0 +1,36 @@
+{
+  "name": "yumiko-tube-downloader",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ExtensiÃ³n para Vivaldi/Chrome: descarga vÃ­deos de YouTube en varias resoluciones y convierte el audio a MP3.",
+  "type": "module",
+  "scripts": {
+    "icons": "node scripts/make-icons.mjs",
+    "build": "node scripts/build.mjs",
+    "zip": "node scripts/build.mjs && node scripts/zip.mjs",
+    "crx": "node scripts/build.mjs && node scripts/pack-crx.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "test": "node scripts/test-extract.mjs && node scripts/test-filename.mjs && node scripts/test-thumbnails.mjs && node scripts/test-thumbs-studio.mjs && node scripts/test-studio-flow.mjs && node scripts/test-url-validation.mjs && node scripts/test-popup.mjs && node scripts/test-background.mjs && node scripts/test-page-processor.mjs && node scripts/test-media.mjs",
+    "test:live": "node scripts/test-live.mjs",
+    "probe": "node scripts/probe-youtube.mjs"
+  },
+  "keywords": [
+    "youtube",
+    "downloader",
+    "vivaldi",
+    "mp3"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "fflate": "^0.8.3",
+    "jsdom": "^30.1.2"
+  },
+  "dependencies": {
+    "@breezystack/lamejs": "^1.2.7",
+    "mediabunny": "^1.61.1"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

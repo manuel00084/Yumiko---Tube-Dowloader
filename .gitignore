@@ -1,0 +1,14 @@
+# Dependencias
+node_modules/
+
+# Bundles que genera esbuild (se reconstruyen con `npm run build`)
+extension/lib/*.js
+
+# Artefactos de empaquetado
+dist/
+.test-build/
+
+# Ruido del sistema
+*.log
+.DS_Store
+Thumbs.db

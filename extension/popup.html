@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+	<head>
+		<meta charset="utf-8" />
+		<title>Yumiko - Tube Downloader</title>
+		<link rel="stylesheet" href="popup.css" />
+	</head>
+	<body>
+		<header class="head">
+			<img id="thumb" class="thumb" alt="" hidden />
+			<div class="head-text">
+				<h1 id="title">Cargando vídeo…</h1>
+				<p id="subtitle" class="subtitle"></p>
+			</div>
+		</header>
+
+		<p id="notice" class="notice" hidden></p>
+
+		<div id="tabs" class="tabs" hidden>
+			<button type="button" class="tab is-active" data-mode="video">Vídeo</button>
+			<button type="button" class="tab" data-mode="audio">Solo audio</button>
+			<button type="button" class="tab" data-mode="thumbs">Miniaturas</button>
+		</div>
+
+		<button id="destination" class="destination" type="button" title="Abrir esta carpeta">
+			<span id="destination-text">…</span>
+		</button>
+
+		<section id="video-pane" class="pane">
+			<label class="row check">
+				<input type="checkbox" id="merge-audio" checked />
+				<span>Añadir el audio original</span>
+			</label>
+			<div id="video-list" class="list"></div>
+		</section>
+
+		<section id="audio-pane" class="pane" hidden>
+			<div id="audio-list" class="list"></div>
+			<label class="row select" id="bitrate-row" hidden>
+				<span>Calidad del MP3</span>
+				<select id="mp3-bitrate">
+					<option value="320">320 kbps · máxima</option>
+					<option value="256">256 kbps · muy alta</option>
+					<option value="192">192 kbps · alta</option>
+					<option value="128">128 kbps · normal</option>
+					<option value="96">96 kbps · ligera</option>
+				</select>
+			</label>
+		</section>
+
+		<section id="thumbs-pane" class="pane" hidden>
+			<p class="hint">
+				El estudio lista todas las miniaturas que YouTube expone del vídeo (incluidas las
+				<code>oar1/oar2/oar3</code>, que a menudo llegan a 1920&times;1080), te deja marcar
+				varias, ampliarlas con IA o con Lanczos y guardarlas en JPG, WebP o PNG.
+			</p>
+			<button id="open-thumbs" class="primary" type="button">Abrir el estudio de miniaturas</button>
+			<p class="hint">
+				Tambien puedes abrirlo con <b>Alt + M</b> sobre la página, o con el boton flotante.
+				Mientras esta abierto, el trabajo ocurre en esa pestana.
+			</p>
+		</section>
+
+		<details id="options" class="options">
+			<summary>Opciones</summary>
+			<p class="hint">
+				Las carpetas van dentro de tu carpeta de descargas (se pueden anidar: <code>Yumiko/Videos</code>). Para
+				guardar en otro sitio, activa "Preguntar dónde guardar". La carpeta de miniaturas se cambia en el propio
+				estudio.
+			</p>
+			<label class="row select">
+				<span>Carpeta de vídeo</span>
+				<input type="text" id="video-folder" placeholder="Yumiko/Videos" />
+			</label>
+			<label class="row select">
+				<span>Carpeta de audio</span>
+				<input type="text" id="audio-folder" placeholder="Yumiko/Audio" />
+			</label>
+			<label class="row check">
+				<input type="checkbox" id="ask-where" />
+				<span>Preguntar dónde guardar cada vez</span>
+			</label>
+			<label class="row check">
+				<input type="checkbox" id="include-author" />
+				<span>Añadir el nombre del canal al archivo</span>
+			</label>
+			<label class="row select">
+				<span>Calidad por defecto</span>
+				<select id="audio-format">
+					<option value="mp3">MP3 (convertido)</option>
+					<option value="m4a">M4A original (sin convertir)</option>
+					<option value="opus">Opus original (sin convertir)</option>
+				</select>
+			</label>
+		</details>
+
+		<button id="download" class="primary" type="button" disabled>Descargar</button>
+
+		<div id="progress-box" class="progress" hidden>
+			<div class="progress-head">
+				<span id="progress-label">Preparando…</span>
+				<button id="cancel" class="link" type="button">Cancelar</button>
+			</div>
+			<div class="bar"><div id="bar-fill" class="bar-fill"></div></div>
+		</div>
+
+		<p id="status" class="status" hidden></p>
+
+		<details id="diagnostics" class="options" hidden>
+			<summary>Diagnóstico</summary>
+			<p class="hint">Si algo falla, copia este texto y envíalo: dice exactamente qué ha visto la extensión.</p>
+			<pre id="diagnostics-text" class="diag"></pre>
+			<button id="copy-diagnostics" class="link" type="button">Copiar diagnóstico</button>
+		</details>
+
+		<footer class="foot">
+			<button id="open-folder" class="link" type="button">Abrir carpeta de descargas</button>
+		</footer>
+
+		<script type="module" src="popup.js"></script>
+	</body>
+</html>

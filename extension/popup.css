@@ -1,0 +1,393 @@
+:root {
+	--bg: #14141a;
+	--bg-soft: #1e1e26;
+	--bg-hover: #2a2a35;
+	--line: #32323f;
+	--text: #f2f2f5;
+	--muted: #a0a0ae;
+	--accent: #ff2d55;
+	--accent-dark: #d8003c;
+	--ok: #3ddc84;
+	--error: #ff6b6b;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	width: 380px;
+	max-height: 600px;
+	overflow-y: auto;
+	background: var(--bg);
+	color: var(--text);
+	font: 13px/1.45 'Segoe UI', system-ui, sans-serif;
+}
+
+.head {
+	display: flex;
+	gap: 10px;
+	padding: 12px;
+	border-bottom: 1px solid var(--line);
+}
+
+.thumb {
+	width: 96px;
+	height: 54px;
+	object-fit: cover;
+	border-radius: 6px;
+	flex-shrink: 0;
+	background: #000;
+}
+
+.head-text {
+	min-width: 0;
+}
+
+h1 {
+	margin: 0;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1.3;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.subtitle {
+	margin: 4px 0 0;
+	color: var(--muted);
+	font-size: 11.5px;
+}
+
+.notice {
+	margin: 10px 12px 0;
+	padding: 8px 10px;
+	border-radius: 6px;
+	background: rgba(255, 107, 107, 0.12);
+	border: 1px solid rgba(255, 107, 107, 0.35);
+	color: #ffc9c9;
+	font-size: 12px;
+}
+
+.tabs {
+	display: flex;
+	gap: 6px;
+	padding: 10px 12px 0;
+}
+
+.tab {
+	flex: 1;
+	padding: 7px;
+	border: 1px solid var(--line);
+	border-radius: 999px;
+	background: transparent;
+	color: var(--muted);
+	cursor: pointer;
+	font: inherit;
+}
+
+.tab.is-active {
+	background: var(--bg-soft);
+	border-color: var(--accent);
+	color: var(--text);
+}
+
+.thumb {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px;
+	border: 1px solid var(--line);
+	border-radius: 7px;
+	background: var(--bg-soft);
+}
+
+.thumb img {
+	width: 96px;
+	height: 54px;
+	object-fit: cover;
+	border-radius: 4px;
+	background: #000;
+	flex-shrink: 0;
+}
+
+.thumb .label {
+	flex: 1;
+	min-width: 0;
+}
+
+.mini {
+	padding: 5px 10px;
+	border: 1px solid var(--line);
+	border-radius: 5px;
+	background: var(--bg-hover);
+	color: var(--text);
+	cursor: pointer;
+	font: 12px 'Segoe UI', system-ui, sans-serif;
+}
+
+.mini:hover:enabled {
+	border-color: var(--accent);
+}
+
+.mini:disabled {
+	opacity: 0.5;
+	cursor: default;
+}
+
+.destination {
+	display: block;
+	width: calc(100% - 24px);
+	margin: 8px 12px 0;
+	padding: 5px 8px;
+	border: 1px dashed var(--line);
+	border-radius: 6px;
+	background: transparent;
+	color: var(--muted);
+	font: 11px ui-monospace, Consolas, monospace;
+	text-align: left;
+	cursor: pointer;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.destination:hover {
+	border-color: var(--accent);
+	color: var(--text);
+}
+
+.pane {
+	padding: 10px 12px 0;
+}
+
+.row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	padding: 6px 0;
+}
+
+.row.check {
+	justify-content: flex-start;
+	font-size: 12px;
+	color: var(--muted);
+}
+
+.row.select {
+	font-size: 12px;
+}
+
+.row.select input,
+.row.select select {
+	flex: 1;
+	max-width: 190px;
+	padding: 5px 6px;
+	border: 1px solid var(--line);
+	border-radius: 5px;
+	background: var(--bg-soft);
+	color: var(--text);
+	font: inherit;
+}
+
+input[type='checkbox'] {
+	accent-color: var(--accent);
+}
+
+.list {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	margin-top: 6px;
+	max-height: 268px;
+	overflow-y: auto;
+}
+
+.choice {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 7px 9px;
+	border: 1px solid var(--line);
+	border-radius: 7px;
+	background: var(--bg-soft);
+	cursor: pointer;
+}
+
+.choice:hover {
+	background: var(--bg-hover);
+}
+
+.choice.is-selected {
+	border-color: var(--accent);
+}
+
+.choice input {
+	margin: 0;
+	accent-color: var(--accent);
+}
+
+.choice .label {
+	flex: 1;
+	min-width: 0;
+}
+
+.choice .title {
+	font-weight: 600;
+	font-size: 12.5px;
+}
+
+.choice .detail {
+	color: var(--muted);
+	font-size: 11px;
+}
+
+.choice .size {
+	color: var(--muted);
+	font-size: 11.5px;
+	white-space: nowrap;
+}
+
+.badge {
+	padding: 1px 6px;
+	border-radius: 999px;
+	background: rgba(61, 220, 132, 0.15);
+	color: var(--ok);
+	font-size: 10px;
+	margin-left: 4px;
+}
+
+.badge.neutral {
+	background: rgba(160, 160, 174, 0.15);
+	color: var(--muted);
+}
+
+.options {
+	margin: 12px 12px 0;
+	padding: 8px 0 0;
+	border-top: 1px solid var(--line);
+}
+
+.diag {
+	margin: 6px 0;
+	padding: 8px;
+	max-height: 190px;
+	overflow: auto;
+	background: #0e0e13;
+	border: 1px solid var(--line);
+	border-radius: 6px;
+	color: #c8c8d4;
+	font: 11px/1.5 ui-monospace, 'Cascadia Code', Consolas, monospace;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.options summary {
+	cursor: pointer;
+	color: var(--muted);
+	font-size: 12px;
+}
+
+.hint {
+	margin: 8px 0 4px;
+	color: var(--muted);
+	font-size: 11px;
+	line-height: 1.4;
+}
+
+.hint code {
+	background: var(--bg-soft);
+	padding: 0 3px;
+	border-radius: 3px;
+}
+
+.primary {
+	width: calc(100% - 24px);
+	margin: 12px;
+	padding: 10px;
+	border: 0;
+	border-radius: 7px;
+	background: var(--accent);
+	color: #fff;
+	font: 600 13px 'Segoe UI', system-ui, sans-serif;
+	cursor: pointer;
+}
+
+.primary:hover:enabled {
+	background: var(--accent-dark);
+}
+
+.primary:disabled {
+	background: var(--bg-hover);
+	color: var(--muted);
+	cursor: default;
+}
+
+.progress {
+	margin: 0 12px 4px;
+}
+
+.progress-head {
+	display: flex;
+	justify-content: space-between;
+	font-size: 11.5px;
+	color: var(--muted);
+}
+
+.bar {
+	height: 5px;
+	margin-top: 5px;
+	border-radius: 999px;
+	background: var(--bg-hover);
+	overflow: hidden;
+}
+
+.bar-fill {
+	height: 100%;
+	width: 0;
+	background: var(--accent);
+	transition: width 0.25s ease;
+}
+
+.status {
+	margin: 8px 12px 0;
+	font-size: 12px;
+	color: var(--muted);
+	word-break: break-word;
+}
+
+.status.ok {
+	color: var(--ok);
+}
+
+.status.error {
+	color: var(--error);
+}
+
+.foot {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px 0 12px;
+	border-top: 1px solid var(--line);
+	margin-top: 12px;
+}
+
+.link {
+	border: 0;
+	background: none;
+	color: var(--muted);
+	cursor: pointer;
+	font: inherit;
+	font-size: 11.5px;
+	text-decoration: underline;
+	padding: 0;
+}
+
+.link:hover {
+	color: var(--text);
+}

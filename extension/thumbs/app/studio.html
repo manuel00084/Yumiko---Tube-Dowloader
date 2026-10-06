@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>Miniaturas de YouTube</title>
+    <link rel="stylesheet" href="studio.css" />
+  </head>
+  <body>
+    <div class="backdrop" id="backdrop"></div>
+
+    <main class="panel" id="panel" role="dialog" aria-modal="true" aria-label="Selector de miniaturas">
+      <header class="head">
+        <div class="head-titles">
+          <h1 id="pageTitle">Miniaturas de YouTube</h1>
+          <p class="sub" id="pageSub">Cargando…</p>
+        </div>
+        <div class="head-actions">
+          <button class="ghost" id="toggleAdvanced" type="button" title="Mostrar u ocultar los ajustes avanzados">Ajustes</button>
+          <button class="ghost icon" id="closePanel" type="button" title="Cerrar (Esc)">✕</button>
+        </div>
+      </header>
+
+      <section class="toolbar" aria-label="Opciones de guardado">
+        <label class="field">
+          <span>Formato</span>
+          <select id="format">
+            <option value="png">PNG (sin pérdida)</option>
+            <option value="jpg">JPG</option>
+            <option value="webp">WebP</option>
+          </select>
+        </label>
+
+        <label class="field" id="qualityField">
+          <span>Calidad <em id="qualityValue">100 %</em></span>
+          <input id="quality" type="range" min="50" max="100" step="1" value="100" />
+        </label>
+
+        <label class="field">
+          <span>Escalador</span>
+          <select id="upscaler">
+            <option value="lanczos">Lanczos (rápido, sin IA)</option>
+            <option value="ai">IA (red neuronal)</option>
+          </select>
+        </label>
+
+        <label class="field hidden" id="modelField">
+          <span>Modelo IA</span>
+          <select id="aiModel"></select>
+        </label>
+
+        <label class="field">
+          <span>Factor</span>
+          <select id="scale">
+            <option value="1">Sin escalar (1x)</option>
+            <option value="1.5">1.5x</option>
+            <option value="2">2x</option>
+            <option value="3">3x</option>
+            <option value="4">4x</option>
+            <option value="0">Auto (el del modelo)</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Ancho máx. <em id="targetWidthValue">1920</em></span>
+          <select id="targetWidth">
+            <option value="0">Sin límite</option>
+            <option value="1280">1280</option>
+            <option value="1920">1920</option>
+            <option value="2560">2560</option>
+            <option value="3840">3840</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Realce <em id="sharpenValue">0.35</em></span>
+          <input id="sharpen" type="range" min="0" max="120" step="5" value="35" />
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="trimBars" />
+          <span>Quitar barras negras</span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="crop169" />
+          <span>Recortar a 16:9</span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="gammaCorrect" checked />
+          <span>Gamma lineal</span>
+        </label>
+
+        <label class="check">
+          <input type="checkbox" id="zipBatch" checked />
+          <span>ZIP en descargas múltiples</span>
+        </label>
+
+        <details class="advanced">
+          <summary>Nombre de archivo y carpeta</summary>
+          <label class="field wide">
+            <span>Plantilla</span>
+            <input id="filenameTemplate" type="text" spellcheck="false" />
+          </label>
+          <p class="hint">
+            Variables: <code>{title}</code> <code>{id}</code> <code>{source}</code>
+            <code>{w}</code> <code>{h}</code> <code>{scale}</code> <code>{f}</code>
+            (<code>{res}</code>/<code>{res2}</code> = <code>{w}</code>/<code>{h}</code>)
+          </p>
+          <label class="field wide">
+            <span>Carpeta de destino</span>
+            <input id="folderPrefix" type="text" spellcheck="false" />
+          </label>
+        </details>
+      </section>
+
+      <nav class="tabs" role="tablist">
+        <button class="tab active" data-tab="video" role="tab" type="button">
+          Este vídeo <span class="pill" id="countVideo">0</span>
+        </button>
+        <button class="tab" data-tab="page" role="tab" type="button">
+          En esta página <span class="pill" id="countPage">0</span>
+        </button>
+      </nav>
+
+      <div class="summary" id="summary"></div>
+
+      <div class="grid" id="grid" tabindex="0"></div>
+
+      <footer class="foot">
+        <div class="foot-left">
+          <button class="ghost" id="selectBest" type="button">Seleccionar la mejor</button>
+          <button class="ghost" id="selectNone" type="button">Quitar selección</button>
+        </div>
+        <div class="foot-right">
+          <div class="progress hidden" id="progress">
+            <div class="bar"><i id="progressBar"></i></div>
+            <span id="progressText">0 %</span>
+          </div>
+          <button class="primary" id="downloadSelected" type="button">Descargar seleccionadas</button>
+          <button class="primary" id="downloadAll" type="button">Descargar todas</button>
+        </div>
+      </footer>
+
+      <div class="log" id="log"></div>
+    </main>
+
+    <div class="lightbox hidden" id="lightbox">
+      <button class="close" id="lightboxClose" type="button">✕</button>
+      <figure>
+        <img id="lightboxImage" alt="Miniatura ampliada" />
+        <figcaption id="lightboxCaption"></figcaption>
+      </figure>
+    </div>
+
+    <script type="module" src="studio.js"></script>
+  </body>
+</html>
